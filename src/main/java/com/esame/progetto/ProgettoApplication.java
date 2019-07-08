@@ -9,7 +9,6 @@ import com.esame.progetto.database.CsvData;
 public class ProgettoApplication {
 
 	public static void main(String[] args) {
-		System.setProperty("spring.devtools.restart.enabled", "false");
 		//CsvData.dataDownload("http://data.europa.eu/euodp/data/api/3/action/package_show?id=no3cbrttJ8NtGZIVbGnAmQ");
 		SpringApplication.run(ProgettoApplication.class, args);
 	}
