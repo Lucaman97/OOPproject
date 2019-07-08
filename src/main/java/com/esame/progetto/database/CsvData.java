@@ -86,11 +86,11 @@ public class CsvData {
 			
 		} catch(ParseException e) {
 			System.out.println(e.getClass().getCanonicalName()
-				+": Errore in in com.example.demo.service.DatabaseClass.java: "
+				+": Errore in in com.esame.progetto.database.CsvData.java: "
 				+ "Errore nel parsing String - JsonObject");
 		} catch (IOException e) {
 			System.out.println(e.getClass().getCanonicalName()
-				+": Errore in in com.example.demo.service.DatabaseClass.java: "
+				+": Errore in in com.esame.progetto.database.CsvData.java: "
 				+ "Controlla la validità dell URL o Verifica la tua connessione internet");
 		}
 	}
@@ -102,7 +102,7 @@ public class CsvData {
 			} catch ( Exception e) {
 				//errore in scrittura
 				System.out.println(e.getClass().getCanonicalName()
-						+": Errore in in com.example.demo.service.DatabaseClass.java: "
+						+": Errore in in com.esame.progetto.database.CsvData.java: "
 						+ "Errore nella copia del File nella cartella configFile");
 			}
 		}
