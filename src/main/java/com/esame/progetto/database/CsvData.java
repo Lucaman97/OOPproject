@@ -31,11 +31,10 @@ public class CsvData {
 	/**
 	 * @return L'intero ArrayList di oggetti Record
 	*/
-	
+
 	public static ArrayList<Record> getRecords() {
 		return records;
 	}	
-
 	/**
 	 * Inizializza e restituisce l array list di Metadata
 	 * @return ArrayList di oggetti Metadata
@@ -49,6 +48,7 @@ public class CsvData {
 		metadata.add(new Metadata("ObjectiveTimePeriod","Periodo","String"));
 		return metadata;
 	}
+	
 	public static void dataDownload(String urlLink) {
 
 		try {
@@ -68,7 +68,7 @@ public class CsvData {
 			} catch(IOException ioex) {
 			ioex.printStackTrace();
 			}
-		
+
 			JSONObject obj = (JSONObject) JSONValue.parseWithException(json); 
 			JSONObject objI = (JSONObject) (obj.get("result"));
 			JSONArray objA = (JSONArray) (objI.get("resources"));
@@ -86,24 +86,23 @@ public class CsvData {
 			
 		} catch(ParseException e) {
 			System.out.println(e.getClass().getCanonicalName()
-				+": Errore in in com.esame.progetto.database.CsvData.java: "
 				+ "Errore nel parsing String - JsonObject");
 		} catch (IOException e) {
 			System.out.println(e.getClass().getCanonicalName()
-				+": Errore in in com.esame.progetto.database.CsvData.java: "
-				+ "Controlla la validità dell URL o Verifica la tua connessione internet");
+				+"Controlla la validità dell URL o Verifica la tua connessione internet");
+		}
+		finally {
+			records = CsvParser.csvParsing("configFile/dataset.csv");
 		}
 	}
 		
 		public static void download(String url, String fileName){
 			try (InputStream in = URI.create(url).toURL().openStream()) {
 				Files.copy(in, Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
-				records = CsvParser.csvParsing("configFile/dataset.csv");
+				
 			} catch ( Exception e) {
 				//errore in scrittura
-				System.out.println(e.getClass().getCanonicalName()
-						+": Errore in in com.esame.progetto.database.CsvData.java: "
-						+ "Errore nella copia del File nella cartella configFile");
+				System.out.println(e.getClass().getCanonicalName());
 			}
 		}
 	}

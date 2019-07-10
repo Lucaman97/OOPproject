@@ -43,10 +43,10 @@ public class CsvParser {
 			        // crea un oggetto di tipo Record
 			        // elimina eventuali spazi vuoti all'inizio delle Stringhe
 			        Record oggettoRecord = new Record(
-			        							recordCorrente[0].replaceAll("^\\s+",""), 
-			        							recordCorrente[1].replaceAll("^\\s+",""),
-			        							recordCorrente[2].replaceAll("^\\s+",""),
-			        							recordCorrente[3].replaceAll("^\\s+","")				
+			        							recordCorrente[0], 
+			        							recordCorrente[1],
+			        							recordCorrente[2],
+			        							recordCorrente[3]				
 					);
 			        
 			        records.add(oggettoRecord);
@@ -70,10 +70,9 @@ public class CsvParser {
 			
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getClass().getCanonicalName()
-		    +"Errore in com.example.demo.service.ParseCsv.java: File non trovato");
+		    );
 		} catch (IOException e) {
-			System.out.println(e.getClass().getCanonicalName()
-			+"Errore in com.example.demo.service.ParseCsv.java: Operazione di I/O interrotte");
+			System.out.println(e.getClass().getCanonicalName());
 		}
 		
 		return records;

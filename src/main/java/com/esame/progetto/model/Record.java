@@ -8,14 +8,16 @@ public class Record {
 	protected String FREQ ;
 	protected String GEO ;
 	protected String UNIT ;
-	protected String ObjectiveTimePeriod;
+	protected String ObjectiveTimePeriod[];
 	
 	public Record(String freq, String geo, String unit, String objectivetimeperiod) {
 
 	FREQ = freq;
 	GEO = geo;
 	UNIT = unit;
-	ObjectiveTimePeriod = objectivetimeperiod;
+	
+	//Inserisci in una cella dell'array il valore prima del separatore, in questo caso usando ","
+	ObjectiveTimePeriod = objectivetimeperiod.split(",");
 	}
 
 	public String getFREQ() {
@@ -41,13 +43,14 @@ public class Record {
 	public void setUNIT(String uNIT) {
 		UNIT = uNIT;
 	}
-
-	public String getObjectiveTimePeriod() {
+	
+	public String[] getObjectiveTimePeriod() {
+		
 		return ObjectiveTimePeriod;
 	}
 
-	public void setObjectiveTimePeriod(String objectiveTimePeriod) {
-		ObjectiveTimePeriod = objectiveTimePeriod;
+	public void setObjectiveTimePeriod(String valueOTP, int position) {
+		ObjectiveTimePeriod[position] = valueOTP;
 	}
 	
 }
