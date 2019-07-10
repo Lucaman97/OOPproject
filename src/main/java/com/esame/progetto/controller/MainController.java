@@ -13,10 +13,13 @@ import com.esame.progetto.model.Record;
 
 @RestController
 public class MainController {
+
+	ArrayList<Metadata> metadataView=CsvData.getArrayMetadata ();
+	ArrayList<Record> recordView=CsvData.getRecords ();
 	
 	@GetMapping("/metadata")
 	public ArrayList<Metadata> sendMetadata (@RequestParam(name="param1", defaultValue="No data available") String param1) {
- 		 return CsvData.getArrayMetadata ();	
+ 		 return metadataView;	
 }
 
 	@GetMapping("/data")

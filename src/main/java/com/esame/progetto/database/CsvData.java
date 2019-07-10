@@ -45,7 +45,7 @@ public class CsvData {
 		metadata.add(new Metadata("FREQ","Frequenza","String"));
 		metadata.add(new Metadata("GEO","Geolocalita","String"));
 		metadata.add(new Metadata("UNIT","Unita","String"));
-		metadata.add(new Metadata("ObjectiveTimePeriod","Periodo","String"));
+		metadata.add(new Metadata("ObjectiveTimePeriod","Periodo","String[]"));
 		return metadata;
 	}
 	
