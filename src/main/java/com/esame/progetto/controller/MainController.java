@@ -24,6 +24,6 @@ public class MainController {
 
 	@GetMapping("/data")
 	public ArrayList<Record> sendData (@RequestParam(name="param1", defaultValue="No data available") String param1) {
- 		 return CsvData.getRecords ();	
+ 		 return recordView;	
 }
 }
