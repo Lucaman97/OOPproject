@@ -1,11 +1,9 @@
 package com.esame.progetto.model;
-import com.esame.progetto.database.CsvData;
-import com.esame.progetto.ProgettoApplication;
 
 public class StatisticheNumeri {
 	
 	//attributi
-private int avg=10;
+private int avg;
 private int min;
 private int max;
 private int devStd;

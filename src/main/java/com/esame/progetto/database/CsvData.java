@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
+//import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
+//import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -43,9 +43,27 @@ public class CsvData {
 	public static ArrayList<Metadata> getArrayMetadata() {
 		
 		metadata.add(new Metadata("FREQ","Frequenza","String"));
-		metadata.add(new Metadata("GEO","Geolocalita","String"));
+		metadata.add(new Metadata("GEO","Geolocalità","String"));
 		metadata.add(new Metadata("UNIT","Unita","String"));
-		metadata.add(new Metadata("ObjectiveTimePeriod","Periodo","String[]"));
+		metadata.add(new Metadata("ObjectiveTimePeriod","Periodo","String"));
+		metadata.add(new Metadata("anno2000", "Anno", "Float"));
+		metadata.add(new Metadata("anno2001", "Anno", "Float"));
+		metadata.add(new Metadata("anno2002", "Anno", "Float"));
+		metadata.add(new Metadata("anno2003", "Anno", "Float"));
+		metadata.add(new Metadata("anno2004", "Anno", "Float"));
+		metadata.add(new Metadata("anno2005", "Anno", "Float"));
+		metadata.add(new Metadata("anno2006", "Anno", "Float"));
+		metadata.add(new Metadata("anno2007", "Anno", "Float"));
+		metadata.add(new Metadata("anno2008", "Anno", "Float"));
+		metadata.add(new Metadata("anno2009", "Anno", "Float"));
+		metadata.add(new Metadata("anno2010", "Anno", "Float"));
+		metadata.add(new Metadata("anno2011", "Anno", "Float"));
+		metadata.add(new Metadata("anno2012", "Anno", "Float"));
+		metadata.add(new Metadata("anno2013", "Anno", "Float"));
+		metadata.add(new Metadata("anno2014", "Anno", "Float"));
+		metadata.add(new Metadata("anno2015", "Anno", "Float"));
+		metadata.add(new Metadata("anno2016", "Anno", "Float"));
+		metadata.add(new Metadata("anno2017", "Anno", "Float"));
 		return metadata;
 	}
 	
