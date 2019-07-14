@@ -18,9 +18,8 @@ import com.esame.progetto.model.Statistiche;
 @RestController
 public class MainController {
 
-	ArrayList<Metadata> metadataArr=ArrayRecords.getArrayMetadata ();
-	ArrayList<Record> recordArr=ArrayRecords.getRecords ();
-
+	ArrayList<Metadata> metadataArr=CsvData.getArrayMetadata();
+	ArrayList<Record> recordArr=CsvData.getRecords ();
 	Statistiche stat;
 
 	@GetMapping("/metadata")
@@ -34,8 +33,9 @@ public class MainController {
 }
 	
 	@GetMapping("/stats")
-	public Statistiche sendStats (@RequestParam(name="param1", defaultValue = "null") String param1,
-									@RequestParam(name="param2", defaultValue="null") String param2)
+	public Statistiche sendStats (@RequestParam(name="param1", defaultValue = "null") String param1
+								//,@RequestParam(name="param2", defaultValue="null") String param2
+									)
 	{
 		stat = new Statistiche(recordArr, param1); 
 		return stat;	

@@ -103,7 +103,7 @@ public void setSum(ArrayList<Record> record, String fieldName) {
 	 {
 		temp= temp + (float)pickMethod(record.get(i), fieldName);
 	 }
-	System.out.println(temp);
+
 	this.sum=temp;
  }
 
@@ -140,8 +140,7 @@ public Statistiche(ArrayList<Record> record, String fieldName) {
         e.printStackTrace();
     }
     */
-	
-	
+
 	
 	
   }
@@ -171,7 +170,7 @@ private Object pickMethod(Record r, String fieldName) {
 			return r.getAnno2008();			
 		case "anno2009":
 			return r.getAnno2009();
-		case "anno20010":
+		case "anno2010":
 			return r.getAnno2010();
 		case "anno2011":
 			return r.getAnno2011();

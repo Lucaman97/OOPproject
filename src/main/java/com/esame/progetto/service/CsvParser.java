@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.esame.progetto.model.Metadata;
 import com.esame.progetto.model.Record;
 
 /** Rappresenta la classe statica che effettua il parsing del file csv
@@ -18,7 +19,7 @@ public class CsvParser {
 	static String line = "";
 	static int row = 1;
 	static ArrayList<Record> records = new ArrayList<>();
-		
+	static ArrayList<Metadata> metadata= new ArrayList<>();
 
 	/**
 	 * Effettua il parsing del file CSV, salvando ogni riga come oggetto Record.
@@ -29,7 +30,6 @@ public class CsvParser {
 	public static ArrayList<Record> csvParsing(String csvFile){
 		
 		try {
-			
 			br = new BufferedReader(new FileReader(csvFile));
 			br.readLine(); // legge la prima riga e la ignora
 			
@@ -102,6 +102,32 @@ public class CsvParser {
 		}
 		
 		return records;
+	}
+	public static ArrayList<Metadata> getArrayMetadata() {
+		
+		metadata.add(new Metadata("FREQ","Frequenza","String"));
+		metadata.add(new Metadata("GEO","Geolocalità","String"));
+		metadata.add(new Metadata("UNIT","Unita","String"));
+		metadata.add(new Metadata("ObjectiveTimePeriod","Periodo","String"));
+		metadata.add(new Metadata("anno2000", "Anno", "Float"));
+		metadata.add(new Metadata("anno2001", "Anno", "Float"));
+		metadata.add(new Metadata("anno2002", "Anno", "Float"));
+		metadata.add(new Metadata("anno2003", "Anno", "Float"));
+		metadata.add(new Metadata("anno2004", "Anno", "Float"));
+		metadata.add(new Metadata("anno2005", "Anno", "Float"));
+		metadata.add(new Metadata("anno2006", "Anno", "Float"));
+		metadata.add(new Metadata("anno2007", "Anno", "Float"));
+		metadata.add(new Metadata("anno2008", "Anno", "Float"));
+		metadata.add(new Metadata("anno2009", "Anno", "Float"));
+		metadata.add(new Metadata("anno2010", "Anno", "Float"));
+		metadata.add(new Metadata("anno2011", "Anno", "Float"));
+		metadata.add(new Metadata("anno2012", "Anno", "Float"));
+		metadata.add(new Metadata("anno2013", "Anno", "Float"));
+		metadata.add(new Metadata("anno2014", "Anno", "Float"));
+		metadata.add(new Metadata("anno2015", "Anno", "Float"));
+		metadata.add(new Metadata("anno2016", "Anno", "Float"));
+		metadata.add(new Metadata("anno2017", "Anno", "Float"));
+		return metadata;
 	}
 }
 

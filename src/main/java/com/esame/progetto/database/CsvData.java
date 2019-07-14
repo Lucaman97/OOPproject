@@ -25,7 +25,9 @@ import com.esame.progetto.model.Record;
 import com.esame.progetto.service.CsvParser;
 
 public class CsvData {
-
+	static ArrayList<Record> records;
+	static ArrayList<Metadata> metadata;
+	
 	public static void dataDownload(String urlLink) {
 
 		try {
@@ -70,7 +72,7 @@ public class CsvData {
 		}
 		finally {
 			//VERY IMPORTANT
-			ArrayList<Record> records = CsvParser.csvParsing("configFile/dataset.csv");
+			records = CsvParser.csvParsing("configFile/dataset.csv");
 		}
 	}
 		
@@ -82,6 +84,17 @@ public class CsvData {
 				//errore in scrittura
 				System.out.println(e.getClass().getCanonicalName());
 			}
+		}
+		
+		public static ArrayList<Record> getRecords()
+		{
+			return records;
+		}
+		
+		public static ArrayList<Metadata> getArrayMetadata() {
+			
+			metadata=CsvParser.getArrayMetadata() ;
+			return metadata;
 		}
 	}
 
