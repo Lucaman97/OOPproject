@@ -40,10 +40,11 @@ public class CsvParser {
 
 					//Il database aveva errori nella struttura, ho dovuto rimpiazzare le virgole con dei punti e virgola e siccome
 					//ho bisogno di float invece che stringhe ho dovuto eliminare gli spazi in ogni campo.
-					line=line.replace(',', ';');
-					line=line.replace(" ", "");
+					line=line.replace(',', ';').replace(" ", "");
 					
-					System.out.println(line);
+					
+					//Per leggere il database corretto togliere scommentare il seguente comando
+					//System.out.println(line);
 			        String[] recordCorrente = line.split(";");	
 			 			        
 			        // crea un oggetto di tipo Record
