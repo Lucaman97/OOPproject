@@ -2,14 +2,42 @@ package com.esame.progetto.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
+import com.esame.progetto.database.*;
 import com.esame.progetto.utilities.*;
+
+
 
 public class ArrayRecords implements Filter<Record, Object>{
 
-	private static ArrayList<Record>  records = new ArrayList<Record>();
-	private static ArrayList<Metadata> metadata = new ArrayList<Metadata>();
+	private static ArrayList<Record>  records = CsvData.getRecords();
+	private static ArrayList<Metadata> metadata = CsvData.getArrayMetadata();
+	private FilterUtils<Record> utils;
 
+	public ArrayList<Record> filterField(String fieldName, String operator, Object value) {
+		// TODO Auto-generated method stub
+	
+		return (ArrayList<Record>) utils.select(records, fieldName, operator, value);
+	}
+
+	public ArrayRecords(ArrayList<Record> recordsParam) {
+		super();
+		records = recordsParam;
+		this.utils = new FilterUtils<Record>();
+	}
+
+	public ArrayRecords(ArrayList<Record> recordsParam, FilterUtils<Record> utils) {
+		super();
+		records = recordsParam;
+		this.utils = utils;
+	}
+	
+
+
+	public ArrayRecords() {
+		super();
+		records=CsvData.getRecords();
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @return L'intero ArrayList di oggetti Record
 	*/
@@ -23,13 +51,9 @@ public class ArrayRecords implements Filter<Record, Object>{
 	 */
 	
 	public static ArrayList<Metadata> getArrayMetadata() {
-		
 		return metadata;
 	}
-	@Override
-	public Collection<Record> filterField(String fieldName, String operator, Object value) {
-		// TODO Auto-generated method stub
-		return null;
+
 	}
 	
-}
+

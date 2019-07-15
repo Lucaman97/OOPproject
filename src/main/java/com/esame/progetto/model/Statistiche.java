@@ -52,8 +52,9 @@ public float getMin() {
 	return min;
 }
 public void setMin(ArrayList<Record> record, String fieldName) {
-		float temp=0, value=0;	
-	for(int i=0; i< record.size()-1; i++) {
+		float temp, value;	
+		temp=(float)pickMethod(record.get(0), fieldName);
+	for(int i=1; i< record.size()-1; i++) {
 		value=(float)pickMethod(record.get(i), fieldName);
 		if(value<temp)	temp=value;
 	}
@@ -117,7 +118,6 @@ public void setCount(ArrayList<Record> record, String fieldName) {
 }
 public Statistiche(ArrayList<Record> record, String fieldName) {
 	
-	//Method m = record.get(i).getClass().getMethod("get"+fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1), null);
 	if(fieldName=="FREQ" || fieldName=="GEO" || fieldName=="OBJ")
 	{
 		setCount(record, fieldName);

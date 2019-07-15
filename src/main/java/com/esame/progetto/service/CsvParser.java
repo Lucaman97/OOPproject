@@ -38,17 +38,21 @@ public class CsvParser {
 				try {
 
 
-					//Il database aveva errori nella struttura, ho dovuto rimpiazzare le virgole con dei punti e virgola e siccome
-					//ho bisogno di float invece che stringhe ho dovuto eliminare gli spazi in ogni campo.
+					/**Il database ha errori nella struttura, ho dovuto rimpiazzare le virgole con dei punti e virgola e siccome
+					 * ho bisogno di float invece che stringhe ho dovuto eliminare gli spazi in ogni campo.
+					 */
 					line=line.replace(',', ';').replace(" ", "");
 					
 					
-					//Per leggere il database corretto togliere scommentare il seguente comando
-					//System.out.println(line);
+					/**Per leggere il database corretto togliere scommentare il seguente comando
+					 * System.out.println(line);
+					 */
 			        String[] recordCorrente = line.split(";");	
 			 			        
-			        // crea un oggetto di tipo Record
-			        // elimina eventuali spazi vuoti all'inizio delle Stringhe
+			        /** crea un oggetto di tipo Record
+			         * elimina eventuali spazi vuoti all'inizio delle Stringhe
+			         * 
+			         */
 			        Record oggettoRecord = new Record(
 			        							recordCorrente[0],		
 			        							recordCorrente[1],		
@@ -95,8 +99,7 @@ public class CsvParser {
 	       
 			
 		} catch (FileNotFoundException e) {
-			System.out.println(e.getClass().getCanonicalName()
-		    );
+			System.out.println(e.getClass().getCanonicalName());
 		} catch (IOException e) {
 			System.out.println(e.getClass().getCanonicalName());
 		}

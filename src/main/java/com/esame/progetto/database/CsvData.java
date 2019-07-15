@@ -27,7 +27,7 @@ import com.esame.progetto.service.CsvParser;
 public class CsvData {
 	static ArrayList<Record> records;
 	static ArrayList<Metadata> metadata;
-	
+	final static String ADDRESS_FILE="configFile/dataset.csv";
 	public static void dataDownload(String urlLink) {
 
 		try {
@@ -51,14 +51,15 @@ public class CsvData {
 			JSONObject obj = (JSONObject) JSONValue.parseWithException(json); 
 			JSONObject objI = (JSONObject) (obj.get("result"));
 			JSONArray objA = (JSONArray) (objI.get("resources"));
-		
+
+			
 			for(Object o: objA){
 				if ( o instanceof JSONObject ) {
 			    	JSONObject o1 = (JSONObject)o; 
 			    	String name = (String)o1.get("name");
 			    	String urlD = (String)o1.get("url");
 			    	if(name.contains("CSV")) {
-			        	download(urlD, "configFile/dataset.csv");
+			        	download(urlD, ADDRESS_FILE);
 		        	}
 			 	}
 			}	
@@ -67,15 +68,18 @@ public class CsvData {
 			System.out.println(e.getClass().getCanonicalName()
 				+ "Errore nel parsing String - JsonObject");
 		} catch (IOException e) {
-			System.out.println(e.getClass().getCanonicalName()
-				+"Controlla la validità dell URL o Verifica la tua connessione internet");
+			System.out.println(e.getClass().getCanonicalName());
 		}
 		finally {
 			//VERY IMPORTANT
-			records = CsvParser.csvParsing("configFile/dataset.csv");
+			records = CsvParser.csvParsing(ADDRESS_FILE);
+			metadata = CsvParser.getArrayMetadata();
 		}
 	}
 		
+	
+	
+	
 		public static void download(String url, String fileName){
 			try (InputStream in = URI.create(url).toURL().openStream()) {
 				Files.copy(in, Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
@@ -92,8 +96,6 @@ public class CsvData {
 		}
 		
 		public static ArrayList<Metadata> getArrayMetadata() {
-			
-			metadata=CsvParser.getArrayMetadata() ;
 			return metadata;
 		}
 	}
