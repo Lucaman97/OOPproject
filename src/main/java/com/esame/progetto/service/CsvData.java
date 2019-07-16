@@ -1,4 +1,4 @@
-package com.esame.progetto.database;
+package com.esame.progetto.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,6 @@ import org.json.JSONObject;
 
 import com.esame.progetto.model.Metadata;
 import com.esame.progetto.model.Record;
-import com.esame.progetto.service.CsvParser;
 
 public class CsvData {
 	private final static String ADDRESS_FILE="configFile/dataset.csv";

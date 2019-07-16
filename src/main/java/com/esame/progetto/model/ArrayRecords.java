@@ -3,6 +3,7 @@ package com.esame.progetto.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import com.esame.progetto.database.*;
+import com.esame.progetto.service.CsvData;
 import com.esame.progetto.utilities.*;
 
 

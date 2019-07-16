@@ -6,9 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.esame.progetto.model.Metadata;
-import com.esame.progetto.model.Record;
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.esame.progetto.model.*;
 /** Rappresenta la classe statica che effettua il parsing del file csv
  * e restituisce i record salvati.
 **/
@@ -111,7 +113,7 @@ public class CsvParser {
 		metadata.add(new Metadata("FREQ","Frequenza","String"));
 		metadata.add(new Metadata("GEO","Geolocalità","String"));
 		metadata.add(new Metadata("UNIT","Unita","String"));
-		metadata.add(new Metadata("ObjectiveTimePeriod","Periodo","String"));
+		metadata.add(new Metadata("OBJ","Periodo","String"));
 		metadata.add(new Metadata("anno2000", "Anno", "Float"));
 		metadata.add(new Metadata("anno2001", "Anno", "Float"));
 		metadata.add(new Metadata("anno2002", "Anno", "Float"));
@@ -131,6 +133,36 @@ public class CsvParser {
 		metadata.add(new Metadata("anno2016", "Anno", "Float"));
 		metadata.add(new Metadata("anno2017", "Anno", "Float"));
 		return metadata;
+	}
+	
+	
+	public static ArrayList<Record> parsingAndFiltering(ArrayRecords filteringRecords, String json){
+		ArrayList<Record> filtered = new ArrayList<Record>();
+		Record forTesting = new Record();
+		JSONObject obj = new JSONObject(json); 
+		String keys[]=JSONObject.getNames(obj);
+		if(Statistiche.pickMethod(forTesting,  keys[0]) == null) {
+		//System.out.println(obj.toString() + " " + keys[0]);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Il campo selezionato non esiste");
+		}
+
+		JSONObject subObj = new JSONObject(obj.get(keys[0]).toString());
+		
+		String subKeys[]=JSONObject.getNames(subObj);
+		
+		filtered =filteringRecords.filterField(keys[0],subKeys[0], subObj.get(subKeys[0]));
+		
+		
+		return filtered;
+		 
+		 
+	}
+	public static String getField(String body) {
+		// TODO Auto-generated method stub
+		JSONObject obj = new JSONObject(body); 
+		String keys[]=JSONObject.getNames(obj);
+		
+		return keys[0];
 	}
 }
 

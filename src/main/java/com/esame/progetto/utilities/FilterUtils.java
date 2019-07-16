@@ -5,6 +5,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 public class FilterUtils<T> {
 	/*
 	 * 
@@ -23,14 +26,14 @@ public class FilterUtils<T> {
 			Double thC = ((Number)th).doubleValue();
 			Double valuec = ((Number)value).doubleValue();
 			
-			if (operator.equals("=="))
-				return value.equals(th);
-			
-			else if (operator.equals(">"))
+			if (operator.equals("$gt") || operator.contentEquals(">"))
 				return valuec > thC;
 			
-				else if (operator.equals("<"))
+				else if (operator.equals("$lt") || operator.contentEquals("<"))
+				
 				return valuec < thC;
+				else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'operatore non è accettato e non può esser utilizzato come filtro.");
+			
 		}
 		
 		else if(th instanceof String && value instanceof String)
@@ -38,12 +41,13 @@ public class FilterUtils<T> {
 		return false;		
 	}
 	
-	public Collection<T> select(Collection<T> src, String fieldName, String operator, Object value) {
+	public Collection<T> select(Collection<T> src, String fieldName, String operator, Object value){
 		Collection<T> out = new ArrayList<T>();
 		for(T item:src) {
 			try {
 				//getMethod ottiene il metodo che ha il nome come argomento, get class ottiene la classe di item
 				Method m = item.getClass().getMethod("get"+fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1), null);
+				
 				try {
 					Object tmp = m.invoke(item);
 					if(FilterUtils.check(tmp, operator, value))

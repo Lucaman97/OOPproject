@@ -70,6 +70,10 @@ public class Record //implements Filter<Record>
 	
 	}
 
+	public Record() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getFREQ() {
 		return FREQ;
 	}

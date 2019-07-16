@@ -2,20 +2,27 @@ package com.esame.progetto.controller;
 
 
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.esame.progetto.model.ArrayRecords;
 import com.esame.progetto.model.Metadata;
 import com.esame.progetto.model.Record;
 import com.esame.progetto.model.Statistiche;
+import com.esame.progetto.service.CsvParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -44,12 +51,10 @@ public class MainController {
 		return recordArr;	
 }
 	@GetMapping("/stats")
-	public Statistiche sendStats(@RequestParam String param1, @RequestParam String param2)
+	public Statistiche sendStats(@RequestParam String param1)//, @RequestParam String param2)
 	{
 		
-		JSONObject obj = new JSONObject(param2);
-		
-		ArrayList<Record> filteredRecords = record.filterField("anno2000", "<", 100000000000000.0);
+	//	JSONObject obj = new JSONObject(param2);
 		stat = new Statistiche(recordArr, param1);
 		return stat;	
 }
@@ -57,22 +62,17 @@ public class MainController {
 	
 	
 	@PostMapping(value = "/stats")
-	public Statistiche sendStatsFiltered(@RequestBody String body) 
+	public Statistiche sendStatsFiltered(@RequestBody String body) throws ResponseStatusException
 	{
-
-		JSONObject obj = new JSONObject(body); 
-		String keys[]=JSONObject.getNames(obj);
-		JSONObject subObj = new JSONObject(obj.get(keys[0]).toString());
 		
-		System.out.println(subObj);
-		String operator="<";
-		float value=100;
+		String field= CsvParser.getField(body);
+		ArrayList<Record> filteredRecords = CsvParser.parsingAndFiltering(record, body);
 		
-		ArrayList<Record> filteredRecords = record.filterField("anno2000", operator, value);
-		stat = new Statistiche(filteredRecords, "anno2000");
+		// record.filterField("anno2000", operator, value);
+		stat = new Statistiche(filteredRecords, field);
+		
 		return stat;
-				
 		
-		 
+		 	
 	}
 }

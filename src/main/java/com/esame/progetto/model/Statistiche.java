@@ -2,6 +2,9 @@ package com.esame.progetto.model;
 
 
 import com.esame.progetto.model.Record;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -147,52 +150,27 @@ public Statistiche(ArrayList<Record> record, String fieldName) {
 	
 	
 
-private Object pickMethod(Record r, String fieldName) {
-	switch (fieldName) {
-		case "anno2000":
-			return r.getAnno2000();
-		case "anno2001":
-			return r.getAnno2001();
-		case "anno2002":
-			return r.getAnno2002();
-		case "anno2003":
-			return r.getAnno2003();
-		case "anno2004":
-			return r.getAnno2004();
-		case "anno2005":
-			return r.getAnno2005();
-		case "anno2006":
-			return r.getAnno2006();
-		case "anno2007":
-			return r.getAnno2007();
-		case "anno2008":
-			return r.getAnno2008();			
-		case "anno2009":
-			return r.getAnno2009();
-		case "anno2010":
-			return r.getAnno2010();
-		case "anno2011":
-			return r.getAnno2011();
-		case "anno2012":
-			return r.getAnno2012();
-		case "anno2013":
-			return r.getAnno2013();
-		case "anno2014":
-			return r.getAnno2014();
-		case "anno2015":
-			return r.getAnno2015();
-		case "anno2016":
-			return r.getAnno2016();
-		case "anno2017":
-			return r.getAnno2017();			
-		case "FREQ":
-			return r.getFREQ();
-		case "GEO":
-			return r.getGEO();
-		case "OBJ":
-			return r.getOBJ();
-	
+public static Object pickMethod(Record r, String fieldName) {
+	Object toReturn = null;
+//	Prepara il nome del metodo (get + fieldName in cui si rende la prima maiuscola)
+	String methodName = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+//	Ottieni un'istanza del metodo
+	try {
+		Method toInvoke = Record.class.getMethod(methodName);
+		toReturn = toInvoke.invoke(r, null);
+	} catch (NoSuchMethodException e) {
+		e.printStackTrace();
+		System.out.println("Metodo non esistente");
+	} catch (SecurityException e) {
+		e.printStackTrace();
+		System.out.println("Security exception");
+	} catch (IllegalAccessException e) {
+		e.printStackTrace();
+	} catch (IllegalArgumentException e) {
+		e.printStackTrace();
+	} catch (InvocationTargetException e) {
+		e.printStackTrace();
 	}
-	return null;
-}
+	return toReturn;
+	}
 }
