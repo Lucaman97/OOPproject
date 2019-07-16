@@ -25,12 +25,14 @@ import com.esame.progetto.model.Record;
 import com.esame.progetto.service.CsvParser;
 
 public class CsvData {
+	private final static String ADDRESS_FILE="configFile/dataset.csv";
 	static ArrayList<Record> records;
 	static ArrayList<Metadata> metadata;
-	final static String ADDRESS_FILE="configFile/dataset.csv";
+	
 	public static void dataDownload(String urlLink) {
 
 		try {
+			
 			  URL url = new URL(urlLink);
 			  HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			  connection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
@@ -41,7 +43,7 @@ public class CsvData {
 				  				json += line;
 				  				line = read.readLine();
 			  					}			  
-			  					
+			
 			} catch(MalformedURLException ex) {
 			 ex.printStackTrace();
 			} catch(IOException ioex) {

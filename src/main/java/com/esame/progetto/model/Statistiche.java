@@ -58,7 +58,6 @@ public void setMin(ArrayList<Record> record, String fieldName) {
 		value=(float)pickMethod(record.get(i), fieldName);
 		if(value<temp)	temp=value;
 	}
-	
 	this.min=temp;
 	
 }
@@ -102,7 +101,7 @@ public void setSum(ArrayList<Record> record, String fieldName) {
 	float temp=0; 
 	for(int i=0; i<record.size(); i++)
 	 {
-		temp= temp + (float)pickMethod(record.get(i), fieldName);
+		temp = temp + (float)pickMethod(record.get(i), fieldName);
 	 }
 
 	this.sum=temp;

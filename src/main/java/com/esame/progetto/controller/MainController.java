@@ -2,6 +2,7 @@ package com.esame.progetto.controller;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
@@ -14,7 +15,6 @@ import com.esame.progetto.model.ArrayRecords;
 import com.esame.progetto.model.Metadata;
 import com.esame.progetto.model.Record;
 import com.esame.progetto.model.Statistiche;
-
 
 
 
@@ -50,17 +50,23 @@ public class MainController {
 		return stat;	
 }
 	
+	
+	
 	@PostMapping("/stats")
 	public Statistiche sendStatsFiltered(@RequestBody String body, 
 										@RequestParam(name="param1", defaultValue ="anno2000") String param1) 
 										throws ParseException
 	{
-		//JSONObject obj = (JSONObject) JSONValue.parseWithException(body);
+		//JSONObject obj1 = new JSONObject(body);
 		
-		ArrayList<Record> filteredRecords = record.filterField("anno2000", "<", 1000.0);
-		stat = new Statistiche(filteredRecords, param1);
-		return stat;
-			
+		if(body!=null)
+				{
+				ArrayList<Record> filteredRecords = record.filterField("anno2010", "<", 1000.0);
+				stat = new Statistiche(filteredRecords, param1);
+				return stat;
+				}
+		
+		else return sendStats(param1);
 }
 
 }
