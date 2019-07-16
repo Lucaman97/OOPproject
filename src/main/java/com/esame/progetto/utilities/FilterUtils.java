@@ -41,8 +41,8 @@ public class FilterUtils<T> {
 		return false;		
 	}
 	
-	public Collection<T> select(Collection<T> src, String fieldName, String operator, Object value){
 		Collection<T> out = new ArrayList<T>();
+		public Collection<T> select(Collection<T> src, String fieldName, String operator, Object value){
 		for(T item:src) {
 			try {
 				//getMethod ottiene il metodo che ha il nome come argomento, get class ottiene la classe di item

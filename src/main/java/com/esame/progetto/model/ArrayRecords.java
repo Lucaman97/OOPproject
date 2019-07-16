@@ -1,10 +1,10 @@
 package com.esame.progetto.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import com.esame.progetto.database.*;
+
 import com.esame.progetto.service.CsvData;
-import com.esame.progetto.utilities.*;
+import com.esame.progetto.utilities.Filter;
+import com.esame.progetto.utilities.FilterUtils;
 
 
 
@@ -57,4 +57,3 @@ public class ArrayRecords implements Filter<Record, Object>{
 
 	}
 	
-

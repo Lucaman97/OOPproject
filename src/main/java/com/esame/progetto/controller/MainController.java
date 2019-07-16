@@ -1,16 +1,9 @@
 package com.esame.progetto.controller;
 
-
-
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,58 +14,68 @@ import com.esame.progetto.model.ArrayRecords;
 import com.esame.progetto.model.Metadata;
 import com.esame.progetto.model.Record;
 import com.esame.progetto.model.Statistiche;
+import com.esame.progetto.model.StatisticheNum;
+import com.esame.progetto.model.StatisticheStr;
 import com.esame.progetto.service.CsvParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-
 
 @RestController
 public class MainController {
 
 	ArrayList<Metadata> metadataArr = ArrayRecords.getArrayMetadata();
-	ArrayList<Record> recordArr = ArrayRecords.getRecords ();
-	ArrayRecords record= new ArrayRecords(recordArr);
-	ArrayRecords metadata= new ArrayRecords();
-	Statistiche stat;
+	ArrayList<Record> recordArr = ArrayRecords.getRecords();
+	ArrayRecords record = new ArrayRecords(recordArr);
+	ArrayRecords metadata = new ArrayRecords();
 
 	@GetMapping("/metadata")
-	public ArrayList<Metadata> sendMetadata (@RequestParam(name="param1", defaultValue = "null") String param1) {
-		return metadataArr;	
-}
+	public ArrayList<Metadata> sendMetadata(@RequestParam(name = "param1", defaultValue = "null") String param1) {
+		return metadataArr;
+	}
 
 	/**
-	 * NOTA per lo sviluppatore: posso anche far ritornare recordArr e cambiare quindi il tipo a ArrayList<Record>s
+	 * NOTA per lo sviluppatore: posso anche far ritornare recordArr e cambiare
+	 * quindi il tipo a ArrayList<Record>s
+	 * 
 	 * @param param1
 	 * @return
 	 */
-	@GetMapping("/data") 
-	public ArrayList<Record> sendData (@RequestParam(name="param1", defaultValue = "null") String param1) {
- 		
-		return recordArr;	
-}
-	@GetMapping("/stats")
-	public Statistiche sendStats(@RequestParam String param1)//, @RequestParam String param2)
-	{
-		
-	//	JSONObject obj = new JSONObject(param2);
-		stat = new Statistiche(recordArr, param1);
-		return stat;	
-}
-	
-	
-	
-	@PostMapping(value = "/stats")
-	public Statistiche sendStatsFiltered(@RequestBody String body) throws ResponseStatusException
-	{
-		
-		String field= CsvParser.getField(body);
-		ArrayList<Record> filteredRecords = CsvParser.parsingAndFiltering(record, body);
-		
-		// record.filterField("anno2000", operator, value);
-		stat = new Statistiche(filteredRecords, field);
-		
-		return stat;
-		
-		 	
+	@GetMapping("/data")
+	public ArrayList<Record> sendData(@RequestParam(name = "param1", defaultValue = "null") String param1) {
+
+		return recordArr;
 	}
+
+	@GetMapping("/stats")
+	public Statistiche sendStats(@RequestParam(name="fieldName", defaultValue = "null") String fieldName, @RequestParam (name="value", defaultValue = "null" )String value) throws ResponseStatusException
+	{
+		Statistiche stat;
+		value=value.toUpperCase();
+		fieldName=fieldName.toUpperCase();
+		if(fieldName.equals("null")) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Devi passare un parametro fieldName per ottenerne le statistiche.");
+		else if (fieldName.equals("FREQ") || fieldName.equals("GEO") || fieldName.equals("OBJ")) {
+			stat = new StatisticheStr(recordArr, fieldName, value);
+		} else {
+			stat = new StatisticheNum(recordArr, fieldName);
+		}
+
+		return stat;
+	}
+/*
+	@PostMapping("/stats")
+	public Statistiche sendStatsFiltered(@RequestBody JSONObject body) throws ResponseStatusException {
+
+		String fieldName = CsvParser.getField(body);
+		Statistiche stat;
+
+		fieldName=fieldName.toUpperCase();
+		if (fieldName.equals("FREQ") || fieldName.equals("GEO") || fieldName.equals("OBJ")) {
+			stat = new StatisticheStr(recordArr, fieldName, value);
+		} else {
+			ArrayList<Record> filteredRecords = CsvParser.parsingAndFiltering(record, body);
+			stat = new StatisticheNum(filteredRecords, fieldName);
+		}
+
+		return stat;
+
+	}
+	*/
 }

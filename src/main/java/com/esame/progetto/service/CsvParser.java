@@ -10,7 +10,10 @@ import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.esame.progetto.model.*;
+import com.esame.progetto.model.ArrayRecords;
+import com.esame.progetto.model.Metadata;
+import com.esame.progetto.model.Record;
+import com.esame.progetto.model.Statistiche;
 /** Rappresenta la classe statica che effettua il parsing del file csv
  * e restituisce i record salvati.
 **/
@@ -141,16 +144,18 @@ public class CsvParser {
 		Record forTesting = new Record();
 		JSONObject obj = new JSONObject(json); 
 		String keys[]=JSONObject.getNames(obj);
+		
+		
 		if(Statistiche.pickMethod(forTesting,  keys[0]) == null) {
 		//System.out.println(obj.toString() + " " + keys[0]);
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Il campo selezionato non esiste");
 		}
 
-		JSONObject subObj = new JSONObject(obj.get(keys[0]).toString());
+		JSONObject subObj = new JSONObject(obj.getString(keys[0]));
 		
 		String subKeys[]=JSONObject.getNames(subObj);
 		
-		filtered =filteringRecords.filterField(keys[0],subKeys[0], subObj.get(subKeys[0]));
+		filtered = filteringRecords.filterField(keys[0],subKeys[0], subObj.get(subKeys[0]));
 		
 		
 		return filtered;

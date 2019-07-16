@@ -1,13 +1,10 @@
 package com.esame.progetto.model;
 
-import com.esame.progetto.utilities.*;
-
-
 /** Rappresenta la classe i cui oggetti cotengono i dati di un 
  * record (riga) del file csv.
 */
 
-public class Record //implements Filter<Record>
+public class Record 
 {
 	
 	protected String FREQ ;
