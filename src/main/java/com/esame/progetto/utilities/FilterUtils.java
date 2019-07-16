@@ -10,12 +10,12 @@ public class FilterUtils<T> {
 	 * 
 	 * Il filtro è puramente logico, realizzato con operatori logici tipici di MongoDB. HO risolto il problema con la creazione di una interfaccia Filter<E,T>, il cui unico metodo restituirà una generica Collection. Poi tramite un metodo Select, creato in un'altra classe creerò una Collection, tramite queste istruzioni:
 	 * try {
-Method m = item.getClass().getMethod("get"+fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1),null);
-try {
-Object tmp = m.invoke(item);
-if(FilterUtils.check(tmp, operator, value))
-out.add(item);
-out sarà opportunatamente restituito nel Controller, in un metodo mappato di tipo GET.
+		Method m = item.getClass().getMethod("get"+fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1),null);
+		try {
+		Object tmp = m.invoke(item);
+	if(FilterUtils.check(tmp, operator, value))
+	out.add(item);
+	out sarà opportunatamente restituito nel Controller, in un metodo mappato di tipo GET.
 
 	 */
 	public static boolean check(Object value, String operator, Object th) {
@@ -71,7 +71,6 @@ out sarà opportunatamente restituito nel Controller, in un metodo mappato di ti
 				e.printStackTrace();
 			}					
 		}
-		System.out.println(out.toString());
 		return out;
 	}
 }

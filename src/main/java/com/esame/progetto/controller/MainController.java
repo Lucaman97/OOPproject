@@ -1,12 +1,13 @@
 package com.esame.progetto.controller;
 
+
+
 import java.util.ArrayList;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,35 +39,40 @@ public class MainController {
 	 * @return
 	 */
 	@GetMapping("/data") 
-	public ArrayRecords sendData (@RequestParam(name="param1", defaultValue = "null") String param1) {
+	public ArrayList<Record> sendData (@RequestParam(name="param1", defaultValue = "null") String param1) {
  		
-		return record;	
+		return recordArr;	
 }
 	@GetMapping("/stats")
-	public Statistiche sendStats(@RequestParam String param1)
+	public Statistiche sendStats(@RequestParam String param1, @RequestParam String param2)
 	{
-
+		
+		JSONObject obj = new JSONObject(param2);
+		
+		ArrayList<Record> filteredRecords = record.filterField("anno2000", "<", 100000000000000.0);
 		stat = new Statistiche(recordArr, param1);
 		return stat;	
 }
 	
 	
 	
-	@PostMapping("/stats")
-	public Statistiche sendStatsFiltered(@RequestBody String body, 
-										@RequestParam(name="param1", defaultValue ="anno2000") String param1) 
-										throws ParseException
+	@PostMapping(value = "/stats")
+	public Statistiche sendStatsFiltered(@RequestBody String body) 
 	{
-		//JSONObject obj1 = new JSONObject(body);
-		
-		if(body!=null)
-				{
-				ArrayList<Record> filteredRecords = record.filterField("anno2010", "<", 1000.0);
-				stat = new Statistiche(filteredRecords, param1);
-				return stat;
-				}
-		
-		else return sendStats(param1);
-}
 
+		JSONObject obj = new JSONObject(body); 
+		String keys[]=JSONObject.getNames(obj);
+		JSONObject subObj = new JSONObject(obj.get(keys[0]).toString());
+		
+		System.out.println(subObj);
+		String operator="<";
+		float value=100;
+		
+		ArrayList<Record> filteredRecords = record.filterField("anno2000", operator, value);
+		stat = new Statistiche(filteredRecords, "anno2000");
+		return stat;
+				
+		
+		 
+	}
 }

@@ -13,12 +13,11 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.ParseException;
 import java.util.ArrayList;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.esame.progetto.model.Metadata;
 import com.esame.progetto.model.Record;
@@ -29,7 +28,7 @@ public class CsvData {
 	static ArrayList<Record> records;
 	static ArrayList<Metadata> metadata;
 	
-	public static void dataDownload(String urlLink) {
+	public static void dataDownload(String urlLink) throws ParseException {
 
 		try {
 			
@@ -50,7 +49,7 @@ public class CsvData {
 			ioex.printStackTrace();
 			}
 
-			JSONObject obj = (JSONObject) JSONValue.parseWithException(json); 
+			JSONObject obj = new JSONObject(json); 
 			JSONObject objI = (JSONObject) (obj.get("result"));
 			JSONArray objA = (JSONArray) (objI.get("resources"));
 
@@ -66,9 +65,6 @@ public class CsvData {
 			 	}
 			}	
 			
-		} catch(ParseException e) {
-			System.out.println(e.getClass().getCanonicalName()
-				+ "Errore nel parsing String - JsonObject");
 		} catch (IOException e) {
 			System.out.println(e.getClass().getCanonicalName());
 		}
