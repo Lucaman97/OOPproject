@@ -14,7 +14,7 @@ public class ArrayRecords implements Filter<Record, Object>{
 	private static ArrayList<Metadata> metadata = CsvData.getArrayMetadata();
 	private FilterUtils<Record> utils;
 
-	public ArrayList<Record> filterField(String fieldName, String operator, Object value) {
+	public ArrayList<Record> filterField(String fieldName, String operator, Object ... value) {
 		// TODO Auto-generated method stub
 	
 		return (ArrayList<Record>) utils.select(records, fieldName, operator, value);

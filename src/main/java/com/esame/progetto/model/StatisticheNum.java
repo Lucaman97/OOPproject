@@ -12,11 +12,20 @@ public class StatisticheNum extends Statistiche {
 	private float sum;
 
 	public StatisticheNum(ArrayList<Record> record, String fieldName) {
+		if(record.isEmpty()) {
+			this.avg=0;
+			this.min=0;
+			this.max=0;
+			this.devStd=0;
+			this.sum=0;
+		}
+		else{
 		setSum(record, fieldName);
 		setAvg(record);
 		setMin(record, fieldName);
 		setMax(record, fieldName);
 		setDevStd(record, fieldName);
+		}
 	}
 
 	public float getAvg() {

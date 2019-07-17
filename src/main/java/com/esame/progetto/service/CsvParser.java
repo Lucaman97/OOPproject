@@ -139,35 +139,7 @@ public class CsvParser {
 	}
 	
 	
-	public static ArrayList<Record> parsingAndFiltering(ArrayRecords filteringRecords, String json){
-		ArrayList<Record> filtered = new ArrayList<Record>();
-		Record forTesting = new Record();
-		JSONObject obj = new JSONObject(json); 
-		String keys[]=JSONObject.getNames(obj);
-		
-		
-		if(Statistiche.pickMethod(forTesting,  keys[0]) == null) {
-		//System.out.println(obj.toString() + " " + keys[0]);
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Il campo selezionato non esiste");
-		}
+		 
+	}
 
-		JSONObject subObj = new JSONObject(obj.getString(keys[0]));
-		
-		String subKeys[]=JSONObject.getNames(subObj);
-		
-		filtered = filteringRecords.filterField(keys[0],subKeys[0], subObj.get(subKeys[0]));
-		
-		
-		return filtered;
-		 
-		 
-	}
-	public static String getField(String body) {
-		// TODO Auto-generated method stub
-		JSONObject obj = new JSONObject(body); 
-		String keys[]=JSONObject.getNames(obj);
-		
-		return keys[0];
-	}
-}
 

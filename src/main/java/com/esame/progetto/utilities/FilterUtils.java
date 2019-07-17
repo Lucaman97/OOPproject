@@ -21,9 +21,9 @@ public class FilterUtils<T> {
 	out sarà opportunatamente restituito nel Controller, in un metodo mappato di tipo GET.
 
 	 */
-	public static boolean check(Object value, String operator, Object th) {
-		if (th instanceof Number && value instanceof Number) {	
-			Double thC = ((Number)th).doubleValue();
+	public static boolean check(Object value, String operator, Object ...th) {
+		if (th[0] instanceof Number && value instanceof Number) {	
+			Double thC = ((Number)th[0]).doubleValue();
 			Double valuec = ((Number)value).doubleValue();
 			
 			if (operator.equals("$gt") || operator.contentEquals(">"))
@@ -36,13 +36,35 @@ public class FilterUtils<T> {
 			
 		}
 		
-		else if(th instanceof String && value instanceof String)
-			return value.equals(th);
-		return false;		
+		else if(th[0] instanceof String && value instanceof String)
+
+			if(operator.equals("$in") || operator.equals("in"))
+			{
+				for(Object s: th)
+				{
+					if(value.equals((String)s)) return true;
+				}
+			return false;
+			}
+			
+			else if(operator.equals("$nin") || operator.equals("nin"))
+			{
+				for(Object s: th)
+				{
+					if(value.equals((String)s)) return false;
+				}
+			return true;
+			
+		
+			
+	}
+	else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'operatore non è accettato e non può esser utilizzato come filtro.");
+		
+	return false;	
 	}
 	
 		Collection<T> out = new ArrayList<T>();
-		public Collection<T> select(Collection<T> src, String fieldName, String operator, Object value){
+		public Collection<T> select(Collection<T> src, String fieldName, String operator, Object ...value){
 		for(T item:src) {
 			try {
 				//getMethod ottiene il metodo che ha il nome come argomento, get class ottiene la classe di item
@@ -75,6 +97,7 @@ public class FilterUtils<T> {
 				e.printStackTrace();
 			}					
 		}
+		
 		return out;
 	}
 }
