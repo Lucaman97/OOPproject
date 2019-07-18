@@ -1,0 +1,13 @@
+com\esame\progetto\service\JSONParser.class
+com\esame\progetto\utilities\FilterUtils.class
+com\esame\progetto\model\StatisticheStr.class
+com\esame\progetto\service\CsvParser.class
+com\esame\progetto\service\DataFromLink.class
+com\esame\progetto\utilities\Filter.class
+com\esame\progetto\controller\MainController.class
+com\esame\progetto\model\ArrayRecords.class
+com\esame\progetto\model\Statistiche.class
+com\esame\progetto\ProgettoApplication.class
+com\esame\progetto\model\Metadata.class
+com\esame\progetto\model\StatisticheNum.class
+com\esame\progetto\model\Record.class
