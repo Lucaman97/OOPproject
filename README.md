@@ -10,7 +10,7 @@ Il nostro Data-set contiene informazioni riguardanti i **Block-exempted aid**, r
 
 La struttura dati delle informazioni viene riassunta nello schema seguente:
 
-((1))
+((1))![](https://github.com/Lucaman97/OOPproject/blob/master/images/1.png)
 
 La nostra applicazione permette di richiedere mediante API REST (GET o POST) con rotte distinte la:
 
