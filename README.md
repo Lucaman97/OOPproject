@@ -8,7 +8,7 @@ Un Web Service è un sistema software progettato per supportare l'interoperabilit
 
 Il nostro Data-set contiene informazioni riguardanti i **Block-exempted aid**, regolato dal GBER. Si tratta di un regolamento europeo di esenzione per categoria contenente 26 misure che possono essere utilizzate per fornire aiuti di Stato legittimi senza passare attraverso i normali processi di notifica e approvazione. È stato pubblicato dalla Commissione europea nel 2008 allo scopo di consolidare e semplificare le attuali normative sugli aiuti di Stato.
 
-La struttura dati delle informazioni viene riassunta nello schema seguente:
+La struttura dati delle informazioni, visionabile   [cliccando qui](https://webgate.ec.europa.eu/comp/redisstat/databrowser/product/page/COMP_BEX_SA_X$COMP_BEX_SA_01) viene riassuntanello schema seguente:
 
 ![](https://github.com/Lucaman97/OOPproject/blob/master/images/1.png)
 
