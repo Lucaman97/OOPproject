@@ -1,0 +1,16 @@
+html, body {
+    height: 100%;
+}
+
+.myBox {
+  border: 1px solid #bebdbe;
+  padding: 30px;
+}
+
+.myButton {
+  margin-right: 5px;
+}
+
+textarea {
+  resize: none;
+}

@@ -1,6 +1,7 @@
 package com.esame.progetto.service;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Classe parser di un oggetto JSON.
@@ -38,11 +39,16 @@ public class JSONParser {
 	 */
 	public JSONParser(String jsonString) {
 		this.json = new JSONObject(jsonString);
-//		Estrae il valore prendendo il primo (e, in questo caso, unico) valore delle chiavi
+		
+		//Estrae il valore prendendo il primo (e, in questo caso, unico) valore delle chiavi
 		this.value = (JSONObject.getNames(json))[0];
-//		Oggetto intermedio che incapsula tipo e valore del filtro
+		
+		
+		
+		//Oggetto intermedio che incapsula tipo e valore del filtro
 		JSONObject filterDetails = json.getJSONObject(value);
-//		Estrazione dell'unica coppia chiave-valore che rappresenta il filtro
+		
+		//Estrazione dell'unica coppia chiave-valore che rappresenta il filtro
 		this.filterType = (JSONObject.getNames(filterDetails))[0];
 		this.filterValue = filterDetails.get(filterType);
 	}

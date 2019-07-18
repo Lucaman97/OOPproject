@@ -2,6 +2,11 @@ package com.esame.progetto.model;
 
 import java.util.ArrayList;
 
+/** 
+ * Classe i cui oggetti rappresentano le statistiche di tipo numerico.
+ * Estende la superclasse Statistiche
+*/
+
 public class StatisticheNum extends Statistiche {
 
 	// attributi

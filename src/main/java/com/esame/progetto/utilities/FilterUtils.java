@@ -8,20 +8,21 @@ import java.util.Collection;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+/**
+ * Classe che implementa l'utility filtro.
+ * @param <T>
+ */
 public class FilterUtils<T> {
-	/*
-	 * 
-	 * Il filtro è puramente logico, realizzato con operatori logici tipici di MongoDB. HO risolto il problema con la creazione di una interfaccia Filter<E,T>, il cui unico metodo restituirà una generica Collection. Poi tramite un metodo Select, creato in un'altra classe creerò una Collection, tramite queste istruzioni:
-	 * try {
-		Method m = item.getClass().getMethod("get"+fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1),null);
-		try {
-		Object tmp = m.invoke(item);
-	if(FilterUtils.check(tmp, operator, value))
-	out.add(item);
-	out sarà opportunatamente restituito nel Controller, in un metodo mappato di tipo GET.
-
+	
+	
+	/**
+	 * Funzione che controlla se un valore va inserito nell'ArrayList filtrato.
+	 * @param value
+	 * @param operator
+	 * @param th
+	 * @return boolean
 	 */
-	public static boolean check(Object value, String operator, Object ...th) {
+	public static boolean check(Object value, String operator, Object ... th) {
 		if (th[0] instanceof Number && value instanceof Number) {	
 			Double thC = ((Number)th[0]).doubleValue();
 			Double valuec = ((Number)value).doubleValue();
@@ -64,10 +65,12 @@ public class FilterUtils<T> {
 	}
 	
 		Collection<T> out = new ArrayList<T>();
-		public Collection<T> select(Collection<T> src, String fieldName, String operator, Object ...value){
+		public Collection<T> select(Collection<T> src, String fieldName, String operator, Object ... value){
+			
 		for(T item:src) {
 			try {
-				//getMethod ottiene il metodo che ha il nome come argomento, get class ottiene la classe di item
+				//getMethod ottiene il metodo che ha il nome come argomento, get class ottiene la classe di item,
+				//L'invocazione al metodo m ritorna l'oggetto che verrà comparato al valore di riferimento per il filtro.
 				Method m = item.getClass().getMethod("get"+fieldName.substring(0, 1).toUpperCase()+fieldName.substring(1), null);
 				
 				try {

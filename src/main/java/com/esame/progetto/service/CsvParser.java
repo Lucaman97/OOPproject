@@ -6,15 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.json.JSONObject;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-
-import com.esame.progetto.model.ArrayRecords;
 import com.esame.progetto.model.Metadata;
 import com.esame.progetto.model.Record;
-import com.esame.progetto.model.Statistiche;
-/** Rappresenta la classe statica che effettua il parsing del file csv
+/** Rappresenta la classe che effettua il parsing del file csv
  * e restituisce i record salvati.
 **/
 
@@ -35,28 +29,23 @@ public class CsvParser {
 	public static ArrayList<Record> csvParsing(String csvFile){
 		
 		try {
+
 			br = new BufferedReader(new FileReader(csvFile));
 			br.readLine(); // legge la prima riga e la ignora
-			
 			while ((line = br.readLine()) != null) {	
 				
 				try {
 
 
-					/**Il database ha errori nella struttura, ho dovuto rimpiazzare le virgole con dei punti e virgola e siccome
+					/**Il database ha errori nella struttura, si rimpiazzano quindi le virgole con dei punti e virgola e siccome
 					 * ho bisogno di float invece che stringhe ho dovuto eliminare gli spazi in ogni campo.
 					 */
-					line=line.replace(',', ';').replace(" ", "");
+					line=line.replaceAll(",", ";");
+					line=line.replaceAll(" ", "");
 					
-					
-					/**Per leggere il database corretto togliere scommentare il seguente comando
-					 * System.out.println(line);
-					 */
 			        String[] recordCorrente = line.split(";");	
-			 			        
-			        /** crea un oggetto di tipo Record
-			         * elimina eventuali spazi vuoti all'inizio delle Stringhe
-			         * 
+			        /** Crea un oggetto di tipo Record.
+			         * Elimina eventuali spazi vuoti all'inizio delle Stringhe 
 			         */
 			        Record oggettoRecord = new Record(
 			        							recordCorrente[0],		
@@ -88,7 +77,7 @@ public class CsvParser {
 			        
 				} catch(ArrayIndexOutOfBoundsException e) {
 					System.out.println("Row #"+row+"  "+e.toString()
-									  +" parametri inseriti. Aspettati 9");
+									  +" parametri inseriti.");
 				} catch(NumberFormatException e) {
 					System.out.println("Row #"+row+"  "+e.toString());
 				} 
@@ -99,18 +88,23 @@ public class CsvParser {
 				br.close();
 	        } catch (IOException e) {
 	        	System.out.println(e.getClass().getCanonicalName()
-	    	        	+"Errore in in com.example.demo.service.ParseCsv.java: Chiusura File");
+	    	        	+"Errore in in com.esame.progetto.service.CsvParser: Chiusura File");
 	    	        }
 	       
 			
 		} catch (FileNotFoundException e) {
-			System.out.println(e.getClass().getCanonicalName());
+			System.out.println(e.getClass().getCanonicalName()
+					+ "Errore in in com.esame.progetto.service.CsvParser: File non trovato");
 		} catch (IOException e) {
-			System.out.println(e.getClass().getCanonicalName());
+			System.out.println(e.getClass().getCanonicalName()+"Errore in in com.esame.progetto.service.CsvParser: Errore nell'input/output");
 		}
 		
 		return records;
 	}
+	
+	/**Scrive i Metadata su un ArrayList.
+	 * @return metadata, l'ArrayList<Metadata> completo
+	 */
 	public static ArrayList<Metadata> getArrayMetadata() {
 		
 		metadata.add(new Metadata("FREQ","Frequenza","String"));

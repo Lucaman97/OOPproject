@@ -2,18 +2,26 @@ package com.esame.progetto.model;
 
 import java.util.ArrayList;
 
-import com.esame.progetto.service.CsvData;
+import com.esame.progetto.service.DataFromLink;
 import com.esame.progetto.utilities.Filter;
 import com.esame.progetto.utilities.FilterUtils;
 
 
 
+/**
+ * Oggetto che rappresenta tutta la struttura del dataset.
+ * Implementa Filter che viene utilizzato per i filtri.
+ */
 public class ArrayRecords implements Filter<Record, Object>{
 
-	private static ArrayList<Record>  records = CsvData.getRecords();
-	private static ArrayList<Metadata> metadata = CsvData.getArrayMetadata();
+	private static ArrayList<Metadata> metadata = DataFromLink.getArrayMetadata();
+	private static ArrayList<Record>  records = DataFromLink.getRecords();
 	private FilterUtils<Record> utils;
 
+	
+	/**
+	 *	Funzione costruttore che effettua il filtro sui records.
+	 */
 	public ArrayList<Record> filterField(String fieldName, String operator, Object ... value) {
 		// TODO Auto-generated method stub
 	
@@ -36,10 +44,10 @@ public class ArrayRecords implements Filter<Record, Object>{
 
 	public ArrayRecords() {
 		super();
-		records=CsvData.getRecords();
+		records=DataFromLink.getRecords();
 		// TODO Auto-generated constructor stub
 	}
-	/**
+	/**Inizializza e restituisce l'array list di Data
 	 * @return L'intero ArrayList di oggetti Record
 	*/
 
@@ -47,7 +55,7 @@ public class ArrayRecords implements Filter<Record, Object>{
 		return records;
 	}	
 	/**
-	 * Inizializza e restituisce l array list di Metadata
+	 * Inizializza e restituisce l'array list di Metadata
 	 * @return ArrayList di oggetti Metadata
 	 */
 	

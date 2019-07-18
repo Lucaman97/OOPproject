@@ -1,5 +1,8 @@
 package com.esame.progetto.model;
-/** Rappresenta la classe i cui oggetti cotengono nome colonna,
+
+
+/** 
+ * Rappresenta la classe i cui oggetti contengono nome colonna,
  * alias assegnato e tipo di dato. 
 */
 
