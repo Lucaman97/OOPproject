@@ -1,4 +1,4 @@
-
+﻿
 
 # OOPproject
 
@@ -70,10 +70,10 @@ GET localhost:8080/data?fieldName=anno2014
 Infine per filtrare su /data e /stats fare una richiesta POST con il filtro specificato nel body. 
 Esempi di prova: 
 
-POST localhost:8080/stats body={"anno2010": {"$gt" : 140.0}} 
-POST localhost:8080/stats body={"GEO" : {"$in": ["UK", "DK", "SE"]}} 
-POST localhost:8080/data body={"anno2012": {"$lt" : 550.0}} 
-POST localhost:8080/data body={"OBJ" : {"$nin": ["OBJ01", "OBJ04]}} 
+POST localhost:8080/stats body={"anno2010": {"$gt" : 140.0}}
+POST localhost:8080/stats body={"GEO" : {"$in": ["UK", "DK", "SE"]}}
+POST localhost:8080/data body={"anno2012": {"$lt" : 550.0}}
+POST localhost:8080/data body={"OBJ" : {"$nin": ["OBJ01", "OBJ04]}}
  
 
 ## Come avviare

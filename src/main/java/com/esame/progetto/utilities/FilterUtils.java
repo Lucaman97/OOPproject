@@ -27,10 +27,10 @@ public class FilterUtils<T> {
 			Double thC = ((Number)th[0]).doubleValue();
 			Double valuec = ((Number)value).doubleValue();
 			
-			if (operator.equals("$gt") || operator.contentEquals(">"))
+			if (operator.equals("$gt") || operator.contentEquals(">") || operator.contentEquals("gt"))
 				return valuec > thC;
 			
-				else if (operator.equals("$lt") || operator.contentEquals("<"))
+				else if (operator.equals("$lt") || operator.contentEquals("<") || operator.contentEquals("lt"))
 				
 				return valuec < thC;
 				else throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'operatore non è accettato e non può esser utilizzato come filtro.");
