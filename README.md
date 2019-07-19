@@ -117,24 +117,24 @@ Ora l'applicazione Web Service sarà attiva e in ascolto alla porta [http://loca
 
 Run dell’Applicazione
 
-![](https://github.com/Lucaman97/OOPproject/blob/master/images/13.png)
+![](https://github.com/Lucaman97/OOPproject/blob/master/images/13.jpg)
 
 Chiamata GET/metadata
 
-![](https://github.com/Lucaman97/OOPproject/blob/master/images/14.png)
+![](https://github.com/Lucaman97/OOPproject/blob/master/images/14.jpg)
 
 Chiamata GET/data
 
-![](https://github.com/Lucaman97/OOPproject/blob/master/images/15.png)
+![](https://github.com/Lucaman97/OOPproject/blob/master/images/15.jpg)
 
 Chiamata POST/data
 
-![](https://github.com/Lucaman97/OOPproject/blob/master/images/18.png)
+![](https://github.com/Lucaman97/OOPproject/blob/master/images/16.jpg)
 
 Chiamata GET/stats
 
-![](https://github.com/Lucaman97/OOPproject/blob/master/images/16.png)
+![](https://github.com/Lucaman97/OOPproject/blob/master/images/17.jpg)
 
 Chiamata POST/stats
 
-![](https://github.com/Lucaman97/OOPproject/blob/master/images/17.png)
+![](https://github.com/Lucaman97/OOPproject/blob/master/images/18.jpg)
