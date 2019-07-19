@@ -41,7 +41,7 @@ EU28, BE, BG, CZ, DK, DE, EE, IE, EL, ES, FR, HR, IT, CY, LV, LT, LU, HU, MT, NL
 **FREQ**:  
 A
 
-Per ottenere una statistica di tipo numerica invece è sufficiente specificare un qualsiasi numero **_facendo attenzione di metterlo in formato FLOAT_** (**_NON scrivere 100 ma 100.0_**)
+Per ottenere una statistica di tipo numerica invece è sufficiente specificare un qualsiasi numero in formato FLOAT (100.0 e non 100).
 
 La seguente tabella mostra i filtri disponibili
 
@@ -66,9 +66,9 @@ Usando l’IDE Eclipse si possono seguire i seguenti passi:
 
 In alternativa è possibile:
 
-Scaricare il progetto, entrare nella directory principale con il cmd e, dopo aver installato Maven correttamente, creare il package con il comando mvn package. Per poter eseguire l’applicazione è sufficiente poi digitare da terminale
+Scaricare il progetto, entrare nella directory principale da terminale e, dopo aver installato Maven correttamente, creare il package con il comando "mvn package". Per poter eseguire l’applicazione è sufficiente poi digitare da terminale:
 
-java -jar /target/”nome del file.jar”
+"java -jar /target/”nome del file.jar”
 
 Ora l'applicazione Web Service sarà attiva e in ascolto alla porta [http://localhost:8080](http://localhost:8080/).
 
