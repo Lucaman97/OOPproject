@@ -49,9 +49,27 @@ La seguente tabella mostra i filtri disponibili
 
 Per i **filtri numerici** il formato è:  
 {“campo” : { “filtro” : valore_filtro}}
+Per provare fare copia e incolla su Postman: {"anno2010": {"$gt" : 140.0}}
 
 Per i **filtri logici** applicati a stringhe il formato è:  
 {“campo” : { “filtro” : [“oggetto1”, “oggetto2”, …, “oggettoN”]}}
+Copia e incolla: {"GEO" : {"$in": ["UK", "DK", "SE"]}}
+
+Per mostrare l'intero dataset effettuare una richiesta get su /data, per i metadata su /metadata.
+
+Per mostrare le statistiche e i data non filtrati effettuare una richiesta GET con primo parametro "fieldName" e secondo "value" nel caso di valori stringhe e solo fieldName nel caso di valori numerici
+Esempio di prova: 
+GET localhost:8080/stats?fieldName=GEO&value=UK  (valori stringa)
+GET localhost:8080/data?fieldName=anno2015  (valori numerici)
+
+Infine per filtrare su /data e /stats fare una richiesta POST con il filtro specificato nel body.
+Esempi di prova:
+POST localhost:8080/stats body={"anno2010": {"$gt" : 140.0}}
+POST localhost:8080/stats body={"GEO" : {"$in": ["UK", "DK", "SE"]}}
+
+POST localhost:8080/data body={"anno2012": {"$lt" : 550.0}}
+POST localhost:8080/data body={"GEO" : {"$in": ["IT", "AT]}}
+
 
 ## Come avviare
 
