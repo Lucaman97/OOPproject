@@ -127,11 +127,11 @@ Chiamata GET/data
 
 ![](https://github.com/Lucaman97/OOPproject/blob/master/images/15.jpg)
 
-Chiamata POST/data
+Chiamata GET/stats
 
 ![](https://github.com/Lucaman97/OOPproject/blob/master/images/16.jpg)
 
-Chiamata GET/stats
+Chiamata POST/data
 
 ![](https://github.com/Lucaman97/OOPproject/blob/master/images/17.jpg)
 
