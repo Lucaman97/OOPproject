@@ -59,21 +59,23 @@ Per mostrare le statistiche e i data non filtrati effettuare una richiesta GET c
 
 Esempio di prova: 
 
-Valori stringa
-GET localhost:8080/stats?fieldName=GEO&value=UK 
-GET localhost:8080/data?fieldName=GEO&value=IT 
-Valori numerici 
-GET localhost:8080/stats?fieldName=anno2015 
-GET localhost:8080/data?fieldName=anno2014
+*Valori stringa* con **GET** 
+ -  localhost:8080/stats?fieldName=GEO&value=UK 
+ -  localhost:8080/data?fieldName=GEO&value=IT 
+ 
+
+*Valori numerici* con **GET** 
+ - localhost:8080/stats?fieldName=anno2015 
+- localhost:8080/data?fieldName=anno2014
  
 
 Infine per filtrare su /data e /stats fare una richiesta POST con il filtro specificato nel body. 
 Esempi di prova: 
 
-POST localhost:8080/stats body={"anno2010": {"$gt" : 140.0}}
-POST localhost:8080/stats body={"GEO" : {"$in": ["UK", "DK", "SE"]}}
-POST localhost:8080/data body={"anno2012": {"$lt" : 550.0}}
-POST localhost:8080/data body={"OBJ" : {"$nin": ["OBJ01", "OBJ04]}}
+- POST localhost:8080/stats body={"anno2010": {"$gt" : 140.0}}
+- POST localhost:8080/stats body={"GEO" : {"$in": ["UK", "DK", "SE"]}}
+- POST localhost:8080/data body={"anno2012": {"$lt" : 550.0}}
+- POST localhost:8080/data body={"OBJ" : {"$nin": ["OBJ01", "OBJ04]}}
  
 
 ## Come avviare
@@ -91,7 +93,7 @@ In alternativa è possibile:
 
 Scaricare il progetto, entrare nella directory principale da terminale e, dopo aver installato Maven correttamente, creare il package con il comando "mvn package". Per poter eseguire l’applicazione è sufficiente poi digitare da terminale:
 
-”java -jar /target/”nome del file.jar”
+”**java -jar /target/”nome del file.jar**”
 
 Ora l'applicazione Web Service sarà attiva e in ascolto alla porta [http://localhost:8080](http://localhost:8080/).
 
